@@ -29,6 +29,6 @@ func (c *Client) NewRequest(action string, params interface{}) *Request {
 }
 
 func (req *Request) WithRegion(region string) *Request {
-	req.SetHeader("X-TC-Region", region)
+	req.SetHeaderNonCanonical("X-TC-Region", region)
 	return req
 }

@@ -15,6 +15,11 @@ type Client struct {
 	service string
 }
 
+func (c *Client) WithRegion(region string) *Client {
+	c.SetCommonHeaderNonCanonical("X-TC-Region", region)
+	return c
+}
+
 func (c *Client) WithCredential(secretId, secretKey string) *Client {
 	c.OnBeforeRequest(func(client *req.Client, req *req.Request) error {
 		requestTimestamp := req.Headers["X-TC-Timestamp"][0]
